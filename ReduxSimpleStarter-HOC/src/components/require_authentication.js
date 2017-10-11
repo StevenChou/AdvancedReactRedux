@@ -9,7 +9,7 @@ export default function(ComposedComponent) {
     };
 
     componentWillMount() {
-        console.log("jj");
+      console.log('jj');
       if (!this.props.authenticated) {
         this.context.router.push('/');
       }
