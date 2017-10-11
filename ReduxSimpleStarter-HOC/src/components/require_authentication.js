@@ -3,16 +3,31 @@ import { connect } from 'react-redux';
 
 export default function(ComposedComponent) {
   class Authentication extends Component {
-    // 定義要存取的 context  
+    // 定義要存取的 context
     static contextTypes = {
       router: React.PropTypes.object
     };
+
+    componentWillMount() {
+        console.log("jj");
+      if (!this.props.authenticated) {
+        this.context.router.push('/');
+      }
+    }
+
+    // state 有變化時，呼叫
+    componentWillUpdate(nextProps) {
+      console.log('props:', this.props.authenticated);
+      console.log('nextProps:', nextProps.authenticated);
+      if (!nextProps.authenticated) {
+        this.context.router.push('/');
+      }
+    }
 
     render() {
       /*  
      console.log(this.props.resources); // => resourceList
       */
-      console.log(this.context);
       return <ComposedComponent {...this.props} />;
     }
   }
