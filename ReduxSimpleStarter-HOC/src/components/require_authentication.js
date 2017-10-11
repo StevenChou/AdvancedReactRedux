@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 
 export default function(ComposedComponent) {
   class Authentication extends Component {
+    // 定義要存取的 context  
+    static contextTypes = {
+      router: React.PropTypes.object
+    };
+
     render() {
       /*  
      console.log(this.props.resources); // => resourceList
       */
-      console.log(this.props.authenticated);
+      console.log(this.context);
       return <ComposedComponent {...this.props} />;
     }
   }
