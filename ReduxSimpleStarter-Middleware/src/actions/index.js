@@ -6,7 +6,7 @@ import { FETCH_USERS } from './types';
 const USERS_URL = 'https://jsonplaceholder.typicode.com/users';
 
 export function fetchUsers() {
-  const request = axios.get('USERS_URL');
+  const request = axios.get(USERS_URL);
 
   return {
     type: FETCH_USERS,
