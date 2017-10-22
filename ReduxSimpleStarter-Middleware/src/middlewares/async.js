@@ -5,9 +5,10 @@ export default function({ dispatch }) {
     // we don't care about it, send it on
     if (!action.payload || !action.payload.then) {
       // call next middleware or reducers
-      next(action);
+      return next(action);
     }
 
+    
     // Make sure that action's promise resolves
     action.payload.then(function(response) {
       // create a new action with the old type, but
