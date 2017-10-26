@@ -6,6 +6,11 @@ const morgan = require('morgan');
 const app = express();
 
 // App Setup
+// use 即註冊 middleware
+app.use(morgan('combined'));  // logging framework[logging incoming request]
+app.use(bodyParser.json({ type: '*.*' })); // parse any incoming request
+
+//
 
 // Server Setup
 const port = process.env.PORT || 3090;
