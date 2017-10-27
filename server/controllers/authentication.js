@@ -10,6 +10,13 @@ exports.signup = function(req, res, next) {
       return next(err);
     }
 
+    // 檢核資料
+    if (!email || !password) {
+      return res
+        .status(422)
+        .send({ error: 'You must provide email and password' });
+    }
+
     // If a user with email does exist, return an error
     if (existingUser) {
       return res.status(422).send({ error: 'Email is in use' });
