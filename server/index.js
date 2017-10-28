@@ -17,8 +17,6 @@ app.use(morgan('combined')); // logging framework[logging incoming request]
 app.use(bodyParser.json({ type: '*/*' })); // parse any incoming request
 router(app);
 
-//
-
 // Server Setup
 const port = process.env.PORT || 3090;
 const server = http.createServer(app);
