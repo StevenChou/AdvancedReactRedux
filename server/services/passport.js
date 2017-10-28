@@ -5,7 +5,11 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 // Setup option for JWT Strategy
-const jwtOption = {};
+// 從哪裡解？  怎麼解？
+const jwtOption = {
+  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  secretOrKey: config.secret
+};
 
 // Create JWT Strategy
 const jwtLogin = new JwtStrategy(jwtOption, function(payload, done) {
@@ -27,3 +31,4 @@ const jwtLogin = new JwtStrategy(jwtOption, function(payload, done) {
 });
 
 // Tell passport to use this strategy
+passport.use(jwtLogin);
