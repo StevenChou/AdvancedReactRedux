@@ -1,6 +1,10 @@
 
 
 export function signinUser({email, password}) {
+    return function(dispatch) {
+
+    }
+
     // Submit email/password to the server
 
     // If request is good...
