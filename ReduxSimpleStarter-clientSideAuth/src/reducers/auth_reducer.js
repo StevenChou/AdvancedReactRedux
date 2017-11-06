@@ -1,4 +1,6 @@
-export default function(state = {}, aciton) {
+import { AUTH_USER, UNAUTH_USER } from './../actions/types';
+
+export default function(state = {}, action) {
   switch (action.type) {
     case AUTH_USER:
       return { ...state, authentication: true };
