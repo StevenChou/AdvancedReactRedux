@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require('cors');
 
 const router = require('./router');
 
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost:auth/auth'); // creates a new database [au
 // App Setup
 // use 即註冊 middleware
 app.use(morgan('combined')); // logging framework[logging incoming request]
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*' })); // parse any incoming request
 router(app);
 
