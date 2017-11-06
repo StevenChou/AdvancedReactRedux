@@ -7,6 +7,7 @@ const ROOT_URL = 'http://localhost:3090';
 
 export function signinUser({ email, password }) {
   // ** redux-thunk 直接存取 dispatch **
+  // automatically call by the redux-thunk middleware
   return function(dispatch) {
     // Submit email/password to the server {email: email, password: password}
     // ES6
