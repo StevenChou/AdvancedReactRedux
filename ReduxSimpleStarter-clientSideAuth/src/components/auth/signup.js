@@ -4,6 +4,12 @@ import { reduxForm } from 'redux-form';
 import * as actions from './../../actions';
 
 class Signup extends Component {
+  // ** form 通過檢核，handleSubmit 才會呼叫 handleFormSubmit **
+  handleFormSubmit(formProps) {
+    // Call action creator to sign up the user!
+    this.props.signupUser(formProps);
+  }
+
   render() {
     console.log('@@ this.props:', this.props);
     // handleSubmit come form redux-form
@@ -13,7 +19,7 @@ class Signup extends Component {
     } = this.props;
 
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <fieldset className="form-group">
           <label>Email:</label>
           <input className="form-control" {...email} />
@@ -37,7 +43,9 @@ class Signup extends Component {
           />
           {/* cool condition */}
           {passwordConfirm.touched &&
-            passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
+            passwordConfirm.error && (
+              <div className="error">{passwordConfirm.error}</div>
+            )}
         </fieldset>
         <button className="btn btn-primary" type="submit">
           Sign up!
