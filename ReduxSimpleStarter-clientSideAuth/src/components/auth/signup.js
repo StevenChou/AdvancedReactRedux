@@ -10,6 +10,16 @@ class Signup extends Component {
     this.props.signupUser(formProps);
   }
 
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
+  }
+
   render() {
     console.log('@@ this.props:', this.props);
     // handleSubmit come form redux-form
@@ -47,6 +57,7 @@ class Signup extends Component {
               <div className="error">{passwordConfirm.error}</div>
             )}
         </fieldset>
+        {this.renderAlert()}
         <button className="btn btn-primary" type="submit">
           Sign up!
         </button>
@@ -78,8 +89,16 @@ function validate(formProps) {
   return errors;
 }
 
-export default reduxForm({
-  form: 'signup',
-  fields: ['email', 'password', 'passwordConfirm'],
-  validate: validate
-})(Signup);
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error };
+}
+
+export default reduxForm(
+  {
+    form: 'signup',
+    fields: ['email', 'password', 'passwordConfirm'],
+    validate: validate
+  },
+  mapStateToProps,
+  actions
+)(Signup);
